@@ -24,8 +24,7 @@ const printHostingInstructions = require("react-dev-utils/printHostingInstructio
 const FileSizeReporter = require("react-dev-utils/FileSizeReporter")
 const printBuildError = require("react-dev-utils/printBuildError")
 
-const { measureFileSizesBeforeBuild } =
-FileSizeReporter
+const { measureFileSizesBeforeBuild } = FileSizeReporter
 const { printFileSizesAfterBuild } = FileSizeReporter
 const useYarn = fs.existsSync(paths.yarnLockFile)
 
@@ -98,7 +97,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 function build(previousFileSizes) {
 	console.log("Creating an optimized production build...")
 
-	let compiler = webpack(config)
+	const compiler = webpack(config)
 	return new Promise((resolve, reject) => {
 		compiler.run((err, stats) => {
 			if (err) {
@@ -115,14 +114,14 @@ function build(previousFileSizes) {
 			}
 			if (
 				process.env.CI &&
-				(typeof process.env.CI !== "string" ||
-				process.env.CI.toLowerCase() !== "false") &&
-				messages.warnings.length
+			(typeof process.env.CI !== "string" ||
+			process.env.CI.toLowerCase() !== "false") &&
+			messages.warnings.length
 			) {
 				console.log(
 					chalk.yellow(
-						"\nTreating warnings as errors because process.env.CI = true.\n" +
-						"Most CI servers set it automatically.\n",
+						`\nTreating warnings as errors because process.env.CI = true.\n
+						Most CI servers set it automatically.\n`,
 					),
 				)
 				return reject(new Error(messages.warnings.join("\n\n")))

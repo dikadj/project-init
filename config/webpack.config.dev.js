@@ -24,8 +24,8 @@ const env = getClientEnvironment(publicUrl)
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
 module.exports = {
-// You may want "eval" instead if you prefer to see the compiled output in DevTools.
-// See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
+	// You may want 'eval' instead if you prefer to see the compiled output in DevTools.
+	// See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
 	devtool: "cheap-module-source-map",
 	// These are the "entry points" to our application.
 	// This means they will be the "root" imports that are included in JS bundle.
@@ -41,16 +41,9 @@ module.exports = {
 		// Note: instead of the default WebpackDevServer client, we use a custom one
 		// to bring better experience for Create React App users. You can replace
 		// the line below with these two lines if you prefer the stock client:
-		// require.resolve('webpack-dev-server/client') + '?/',
-		// require.resolve('webpack/hot/dev-server'),
-
-		// line 1: using webpack-dev-server client,
-		// line 2: webpack's devServer client,
-		// line 3: custom client from create-react-app
 		// require.resolve("webpack-dev-server/client") + "?/",
 		// require.resolve("webpack/hot/dev-server"),
 		require.resolve("react-dev-utils/webpackHotDevClient"),
-
 		// Finally, this is your app's code:
 		paths.appIndexJs,
 		// We include the app code last so that if there is a runtime error during
@@ -106,35 +99,35 @@ module.exports = {
 	module: {
 		strictExportPresence: true,
 		rules: [
-			// TODO: Disable require.ensure as it's not a standard language feature.
-			// We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
-			{ parser: { requireEnsure: false } },
+		// TODO: Disable require.ensure as it's not a standard language feature.
+		// We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
+		// { parser: { requireEnsure: false } },
 
-			// First, run the linter.
-			// It's important to do this before Babel processes the JS.
-			// {
-			//   test: /\.(js|jsx|mjs)$/,
-			//   enforce: "pre",
-			//   use: [
-			//     {
-			//       options: {
-			//         formatter: eslintFormatter,
-			//         eslintPath: require.resolve("eslint"),
-			//
-			//       },
-			//       loader: require.resolve("eslint-loader"),
-			//     },
-			//   ],
-			//   include: paths.appSrc,
-			// },
+		// First, run the linter.
+		// It's important to do this before Babel processes the JS.
+		// {
+		//   test: /\.(js|jsx|mjs)$/,
+		//   enforce: "pre",
+		//   use: [
+		//     {
+		//       options: {
+		//         formatter: eslintFormatter,
+		//         eslintPath: require.resolve("eslint"),
+		//
+		//       },
+		//       loader: require.resolve("eslint-loader"),
+		//     },
+		//   ],
+		//   include: paths.appSrc,
+		// },
 			{
 				// "oneOf" will traverse all following loaders until one will
 				// match the requirements. When no loader matches it will fall
 				// back to the "file" loader at the end of the loader list.
 				oneOf: [
-				// "url" loader works like "file" loader except that it embeds assets
-				// smaller than specified limit in bytes as data URLs to avoid requests.
-				// A missing `test` is equivalent to a match.
+					// "url" loader works like "file" loader except that it embeds assets
+					// smaller than specified limit in bytes as data URLs to avoid requests.
+					// A missing `test` is equivalent to a match.
 					{
 						test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
 						loader: require.resolve("url-loader"),
@@ -153,7 +146,7 @@ module.exports = {
 							// This is a feature of `babel-loader` for webpack (not Babel itself).
 							// It enables caching results in ./node_modules/.cache/babel-loader/
 							// directory for faster rebuilds.
-							cacheDirectory: false,
+							cacheDirectory: true,
 						},
 					},
 					// "postcss" loader applies autoprefixer to our CSS.

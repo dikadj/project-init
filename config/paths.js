@@ -9,15 +9,14 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 const envPublicUrl = process.env.PUBLIC_URL
 
-function ensureSlash(path, needsSlash) {
-	const hasSlash = path.endsWith("/")
+function ensureSlash(thePath, needsSlash) {
+	const hasSlash = thePath.endsWith("/")
 	if (hasSlash && !needsSlash) {
-		return path.substr(path, path.length - 1)
+		return thePath.substr(thePath, thePath.length - 1)
 	} else if (!hasSlash && needsSlash) {
-		return `${path}/`
-	} else {
-		return path
+		return `${thePath}/`
 	}
+	return thePath
 }
 
 const getPublicUrl = appPackageJson =>
@@ -36,7 +35,7 @@ function getServedPath(appPackageJson) {
 	return ensureSlash(servedUrl, true)
 }
 
-// config after eject: we"re in ./config/
+// config after eject: we're in ./config/
 module.exports = {
 	dotenv: resolveApp(".env"),
 	appBuild: resolveApp("build"),
